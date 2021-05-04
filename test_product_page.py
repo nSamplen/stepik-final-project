@@ -1,5 +1,6 @@
 from pages.main_page import MainPage
 from pages.product_page import ProductPage
+from pages.basket_page import BasketPage
 from pages.locators import ProductPageLocators
 from pages.login_page import LoginPage
 import time
@@ -96,5 +97,20 @@ def test_guest_can_go_to_login_page_from_product_page(browser):
     login_page = LoginPage(browser, browser.current_url)
     login_page.should_be_login_page()
 
+def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
+    link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
+    #Гость открывает главную страницу 
+    page = ProductPage(browser, link)
+    page.open()
+    #Переходит в корзину по кнопке в шапке сайта
+    page.go_to_basket_page()
+    
+    basket_page = BasketPage(browser, browser.current_url)
+    #basket_page.should_be_basket_page()
+
+    #Ожидаем, что в корзине нет товаров
+    basket_page.should_be_empty()
+    #Ожидаем, что есть текст о том что корзина пуста 
+    basket_page.should_be_empty_message()
 
 
