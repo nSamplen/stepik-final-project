@@ -10,7 +10,7 @@ import pytest
 
 
 @pytest.mark.parametrize('offer', ["0", "1", "2", "3", "4", "5", "6", pytest.param("7", marks=pytest.mark.xfail), "8", "9"])
-def test_guest_can_add_product_to_basket(browser, offer):
+def test_guest_can_add_product_to_basket(browserS, offer):
     link = f"http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer{offer}"
     page = MainPage(browser, link)   # инициализируем Page Object, передаем в конструктор экземпляр драйвера и url адрес 
     page.open()                      # открываем страницу
@@ -32,7 +32,7 @@ def test_guest_can_add_product_to_basket(browser, offer):
     product_page.should_be_the_same_name_of_product(product_name)
     product_page.should_be_the_same_price_of_product(product_price)
 
-    #time.sleep(1)
+    #time.sleep(200)
 
 
 
