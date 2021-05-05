@@ -22,7 +22,6 @@ class BasketPage(BasePage):
             "Basket is not empty"
 
     def should_be_empty_message(self):
-        #assert self.is_element_present(*BasketPageLocators.EMPTY_MSG), \
         #    "Basket is not empty"
         assert "empty" in self.browser.find_element(*BasketPageLocators.EMPTY_MSG).text, \
             "Basket is not empty"
